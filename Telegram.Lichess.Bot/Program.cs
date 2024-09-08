@@ -66,7 +66,7 @@ namespace Telegram.Lichess.Bot
             {
                 ApiRequestException apiRequestException
                     => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
-                _ => error.ToString()
+                    _ => error.ToString()
             };
 
             Console.WriteLine(ErrorMessage);
