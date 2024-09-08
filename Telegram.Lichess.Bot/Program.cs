@@ -3,6 +3,7 @@ using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Telegram.Lichess.Bot
 {
@@ -40,7 +41,15 @@ namespace Telegram.Lichess.Bot
                 {
                     case UpdateType.Message:
                         {
+                            var inlineKeyboard = new InlineKeyboardMarkup(new[]
+                            {
+                                InlineKeyboardButton.WithUrl("Open Chess Bot", "https://your-webapp-url.com")
+                            });
                             Console.WriteLine("Message received!");
+                            if (update.Message != null && update.Message.Text == "/start")
+                            {
+                                await botClient.SendTextMessageAsync(update.Message.Chat.Id, "Click the button below to open the chess bot.");
+                            }
                             return;
                         }
                 }
